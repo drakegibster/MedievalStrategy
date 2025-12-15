@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqhxc5x4xbvlu"]
+[gd_scene load_steps=6 format=3 uid="uid://cqhxc5x4xbvlu"]
 
 [ext_resource type="Texture2D" uid="uid://dl3lrmfuyjmi4" path="res://Assets/Tilesheet/RTS_medieval@2.png" id="1_bfc22"]
 [ext_resource type="PackedScene" uid="uid://syu6225tkxp1" path="res://Nodes/player.tscn" id="2_s24rg"]
+[ext_resource type="PackedScene" uid="uid://banibmqxa0w73" path="res://Nodes/enemy.tscn" id="3_1sokt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfc22"]
 texture = ExtResource("1_bfc22")
@@ -532,3 +533,6 @@ tile_set = SubResource("TileSet_1sokt")
 [node name="PlayerCam" type="Camera2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("2_s24rg")]
+
+[node name="Enemy" parent="." instance=ExtResource("3_1sokt")]
+position = Vector2(89, 43)
