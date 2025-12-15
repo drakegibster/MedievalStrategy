@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqhxc5x4xbvlu"]
+[gd_scene load_steps=8 format=3 uid="uid://cqhxc5x4xbvlu"]
 
 [ext_resource type="Texture2D" uid="uid://dl3lrmfuyjmi4" path="res://Assets/Tilesheet/RTS_medieval@2.png" id="1_bfc22"]
 [ext_resource type="PackedScene" uid="uid://syu6225tkxp1" path="res://Nodes/player.tscn" id="2_s24rg"]
 [ext_resource type="PackedScene" uid="uid://banibmqxa0w73" path="res://Nodes/enemy.tscn" id="3_1sokt"]
+[ext_resource type="PackedScene" uid="uid://vy44hgfnoavf" path="res://Nodes/allied_unit.tscn" id="4_wi60h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfc22"]
 texture = ExtResource("1_bfc22")
@@ -525,6 +526,11 @@ physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_bfc22")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1sokt"]
+vertices = PackedVector2Array(564.96094, -313.0625, 563.03125, 314.9922, -565.97656, 314, -565.0078, -320.9297)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-575, -331, -576, 324, 573, 325, 575, -323)])
+
 [node name="Game" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -536,3 +542,10 @@ tile_set = SubResource("TileSet_1sokt")
 
 [node name="Enemy" parent="." instance=ExtResource("3_1sokt")]
 position = Vector2(89, 43)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_1sokt")
+
+[node name="AlliedUnit" parent="." instance=ExtResource("4_wi60h")]
+position = Vector2(-42, 16)
