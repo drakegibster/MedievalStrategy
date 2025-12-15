@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://vy44hgfnoavf"]
+
+[ext_resource type="Texture2D" uid="uid://7x7fe4v1tn4y" path="res://Assets/CustomSprites/AlliedSprite.png" id="1_c818w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gn2ry"]
+size = Vector2(14, 14)
+
+[node name="AlliedUnit" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_c818w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gn2ry")
