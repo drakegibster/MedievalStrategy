@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqhxc5x4xbvlu"]
+[gd_scene load_steps=9 format=3 uid="uid://cqhxc5x4xbvlu"]
 
 [ext_resource type="Texture2D" uid="uid://dl3lrmfuyjmi4" path="res://Assets/Tilesheet/RTS_medieval@2.png" id="1_bfc22"]
+[ext_resource type="Script" uid="uid://cp0isn8b13atp" path="res://Scripts/selection_manager.gd" id="1_y4gxr"]
 [ext_resource type="PackedScene" uid="uid://syu6225tkxp1" path="res://Nodes/player.tscn" id="2_s24rg"]
 [ext_resource type="PackedScene" uid="uid://banibmqxa0w73" path="res://Nodes/enemy.tscn" id="3_1sokt"]
 [ext_resource type="PackedScene" uid="uid://vy44hgfnoavf" path="res://Nodes/allied_unit.tscn" id="4_wi60h"]
@@ -531,7 +532,10 @@ vertices = PackedVector2Array(564.96094, -313.0625, 563.03125, 314.9922, -565.97
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-575, -331, -576, 324, 573, 325, 575, -323)])
 
-[node name="Game" type="Node2D"]
+[node name="Main" type="Node2D"]
+
+[node name="SelectionManager" type="Node" parent="."]
+script = ExtResource("1_y4gxr")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_1sokt")
