@@ -17,3 +17,5 @@ texture = ExtResource("1_c818w")
 shape = SubResource("RectangleShape2D_gn2ry")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
