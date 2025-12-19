@@ -5,11 +5,39 @@ var selected_units: Array = [] #List of selected units
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			#handle_left_click()
+			handle_left_click()
 			pass
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
-			#handle_right_click()
+			handle_right_click()
 			pass
+
+func handle_left_click():
+	var mouse_pos = get_viewport().get_mouse_position()
+	# Gets a unit using the get unit function which takes the mouse position as an input
+	var unit = get_unit_at_mouse(mouse_pos)
+	if unit != null:
+		if not Input.is_key_pressed(KEY_SHIFT):
+			deselect_all()
+		select_unit(unit)
+	else:
+		deselect_all()
+
+func handle_right_click():
+	var move_pos = get_viewport().get_mouse_position()
+	for unit in selected_units:
+		if unit.has.method("move_to"):
+			unit.move_to(move_pos)
+		else:
+			pass
+
+func deselect_all():
+	#placeholder
+	#Need to clear the array and let units know that they've been deselected
+	pass
+
+func select_unit(unit):
+	unit.select(true)
+	selected_units.append(unit)
 
 func get_unit_at_mouse(pos):
 	#Creates an object that can run manual intersection tests outside of the normal physics loop
