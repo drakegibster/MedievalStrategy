@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var remote_transform = $RemoteTransform2D
 @export var speed: float = 300.0
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# 1. Get the input direction (returns a Vector2)
 	# This automatically handles WASD and Arrow keys if set in Input Map
 	var direction = Input.get_vector("left", "right", "up", "down")
