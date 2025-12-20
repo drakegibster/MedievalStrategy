@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cqhxc5x4xbvlu"]
 
 [ext_resource type="Texture2D" uid="uid://dl3lrmfuyjmi4" path="res://Assets/Tilesheet/RTS_medieval@2.png" id="1_bfc22"]
-[ext_resource type="Script" uid="uid://bw3ndoyifn522" path="res://Scripts/game.gd" id="1_deiy4"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_deiy4"]
 [ext_resource type="Script" uid="uid://cp0isn8b13atp" path="res://Scripts/selection_manager.gd" id="1_y4gxr"]
 [ext_resource type="PackedScene" uid="uid://syu6225tkxp1" path="res://Nodes/player.tscn" id="2_s24rg"]
 [ext_resource type="PackedScene" uid="uid://banibmqxa0w73" path="res://Nodes/enemy.tscn" id="3_1sokt"]
@@ -544,7 +544,6 @@ tile_set = SubResource("TileSet_1sokt")
 
 [node name="PlayerCam" type="Camera2D" parent="."]
 position_smoothing_enabled = true
-position_smoothing_speed = 20.0
 
 [node name="Player" parent="." instance=ExtResource("2_s24rg")]
 
