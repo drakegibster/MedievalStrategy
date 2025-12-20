@@ -541,6 +541,7 @@ script = ExtResource("1_y4gxr")
 tile_set = SubResource("TileSet_1sokt")
 
 [node name="PlayerCam" type="Camera2D" parent="."]
+position_smoothing_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_s24rg")]
 
