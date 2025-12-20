@@ -25,15 +25,16 @@ func handle_left_click():
 func handle_right_click():
 	var move_pos = get_viewport().get_mouse_position()
 	for unit in selected_units:
-		if unit.has.method("move_to"):
+		if unit.has_method("move_to"):
 			unit.move_to(move_pos)
 		else:
 			pass
 
 func deselect_all():
-	#placeholder
-	#Need to clear the array and let units know that they've been deselected
-	pass
+	for unit in selected_units:
+		if is_instance_valid(unit) and unit.has_method("deselect"):
+			unit.deselect()
+	selected_units.clear()
 
 func select_unit(unit):
 	unit.select(true)

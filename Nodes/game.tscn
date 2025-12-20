@@ -553,3 +553,6 @@ navigation_polygon = SubResource("NavigationPolygon_1sokt")
 
 [node name="AlliedUnit" parent="." instance=ExtResource("4_wi60h")]
 position = Vector2(-42, 16)
+
+[node name="AlliedUnit2" parent="." instance=ExtResource("4_wi60h")]
+position = Vector2(-93, 48)
