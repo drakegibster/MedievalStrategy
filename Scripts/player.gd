@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var remote_transform = $RemoteTransform2D
 @export var speed: float = 300.0
 
 func _physics_process(delta: float) -> void:
