@@ -1,4 +1,5 @@
 extends Node
+@onready var camera = $"../PlayerCam"
 
 var selected_units: Array = [] #List of selected units
 
@@ -23,7 +24,7 @@ func handle_left_click():
 		deselect_all()
 
 func handle_right_click():
-	var move_pos = get_viewport().get_canvas_transform().affine_inverse()
+	var move_pos = camera.get_local_mouse_position() + camera.position
 	for unit in selected_units:
 		if unit.has_method("move_to"):
 			unit.move_to(move_pos)

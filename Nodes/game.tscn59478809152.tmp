@@ -338,9 +338,9 @@ custom_data_layer_0/type = 0
 sources/0 = SubResource("TileSetAtlasSource_424rh")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1sokt"]
-vertices = PackedVector2Array(202, 202, 563.1406, 314.9922, -565.97656, 314, 118, 202, 202, -10, 118, -10, 74, -54, 74, -138, 572.84375, -326.9375, -565.0078, -321.04688, -10, -54, -10, -138)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(8, 1, 0, 4), PackedInt32Array(3, 2, 9, 10), PackedInt32Array(9, 8, 7, 11), PackedInt32Array(9, 11, 10), PackedInt32Array(5, 3, 10, 6)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-575, -331, -576, 324, 573, 325, 583, -337)])
+vertices = PackedVector2Array(564.96094, -313.0625, 563.03125, 314.9922, -565.97656, 314, -565.0078, -320.9297)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-575, -331, -576, 324, 573, 325, 575, -323)])
 source_geometry_mode = 2
 source_geometry_group_name = &"nav_source"
 
