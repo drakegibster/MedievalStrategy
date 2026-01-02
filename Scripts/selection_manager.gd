@@ -1,6 +1,9 @@
-extends Node
-@onready var camera = $"../PlayerCam"
+extends Node2D
 
+@onready var camera = $"../PlayerCam"
+var dragging = false
+var drag_start = Vector2.ZERO
+var drag_end = Vector2.ZERO
 var selected_units: Array = [] #List of selected units
 
 func _unhandled_input(event: InputEvent):
@@ -11,6 +14,10 @@ func _unhandled_input(event: InputEvent):
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			handle_right_click()
 			pass
+
+func _draw():
+	if dragging:
+		draw_rect(Rect2(drag_start, drag_end - drag_start), Color(0, 1, 0, 0.2), true)
 
 func handle_left_click():
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -24,7 +31,7 @@ func handle_left_click():
 		deselect_all()
 
 func handle_right_click():
-	var move_pos = camera.get_local_mouse_position() + camera.position
+	var move_pos = camera.get_global_mouse_position()
 	for unit in selected_units:
 		if unit.has_method("move_to"):
 			unit.move_to(move_pos)
