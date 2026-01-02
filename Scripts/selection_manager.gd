@@ -9,15 +9,28 @@ var selected_units: Array = [] #List of selected units
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			handle_left_click()
-			pass
+			if event.pressed:
+				# Start Drag
+				dragging = true
+				drag_start = event.position
+				drag_end =  event.position
+			elif dragging:
+				# End Drag
+				dragging = false
+				drag_end = event.position
+				queue_redraw() # Hide the box
+				select_units_in_box() # Run the physics check
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			handle_right_click()
-			pass
+	if event is InputEventMouseMotion and dragging:
+		# Update Drag
+		drag_end = event.position # Updates the drag_end part variable, NOT the drag_start var
+		queue_redraw() # Updates the visual box
 
 func _draw():
 	if dragging:
 		draw_rect(Rect2(drag_start, drag_end - drag_start), Color(0, 1, 0, 0.2), true)
+		draw_rect(Rect2(drag_start, drag_end -drag_start), Color(0, 1, 0, 0.5), false, 2.0)
 
 func handle_left_click():
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -47,6 +60,34 @@ func deselect_all():
 func select_unit(unit):
 	unit.select(true)
 	selected_units.append(unit)
+
+func select_units_in_box():
+	# 1. Don't select if the box is too small (accidental click)
+	if drag_start.distance_to(drag_end) < 10:
+		var found_unit = get_unit_at_mouse(drag_start)
+		if found_unit: select_unit(found_unit)
+		return
+	# 2. Deselect olf units if not holding shift
+	if not Input.is_key_pressed(KEY_SHIFT):
+		deselect_all()
+	# 3. Setup the Physics Shape Query
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsShapeQueryParameters2D.new()
+	# 4. Define the rectangle shape
+	var box = RectangleShape2D.new()
+	box.size = abs(drag_end - drag_start) # Size must be positive
+	query.shape = box
+	# 5. Find the center point in world coordinates
+	var center_screen = (drag_start + drag_end) / 2
+	var center_world = get_viewport().get_canvas_transform().affine_inverse() * center_screen
+	query.transform = Transform2D(0, center_world)
+	query.collision_mask = 2 # Get units on layer 2
+	# 6. Execute the query
+	var results = space_state.intersect_shape(query)
+	for data in results:
+		var unit = data.collider
+		if unit.has_method("select"):
+			select_unit(unit)
 
 func get_unit_at_mouse(pos):
 	#Creates an object that can run manual intersection tests outside of the normal physics loop
