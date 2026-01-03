@@ -64,8 +64,9 @@ func select_unit(unit):
 func select_units_in_box():
 	# 1. Don't select if the box is too small (accidental click)
 	if drag_start.distance_to(drag_end) < 10:
-		var found_unit = get_unit_at_mouse(drag_start)
-		if found_unit: select_unit(found_unit)
+		#var found_unit = get_unit_at_mouse(drag_start)
+		#if found_unit: select_unit(found_unit)
+		handle_left_click()
 		return
 	# 2. Deselect olf units if not holding shift
 	if not Input.is_key_pressed(KEY_SHIFT):
@@ -78,8 +79,8 @@ func select_units_in_box():
 	box.size = abs(drag_end - drag_start) # Size must be positive
 	query.shape = box
 	# 5. Find the center point in world coordinates
-	var center_screen = (drag_start + drag_end) / 2
-	var center_world = get_viewport().get_canvas_transform().affine_inverse() * center_screen
+	# var center_screen = 
+	var center_world = (drag_start + drag_end) / 2
 	query.transform = Transform2D(0, center_world)
 	query.collision_mask = 2 # Get units on layer 2
 	# 6. Execute the query
@@ -91,7 +92,7 @@ func select_units_in_box():
 
 func get_unit_at_mouse(pos):
 	#Creates an object that can run manual intersection tests outside of the normal physics loop
-	var space_state = get_viewport().get_world_2d().direct_space_state
+	var space_state = get_world_2d().direct_space_state
 	#Translates mouse position
 	var world_pos = get_viewport().get_canvas_transform().affine_inverse() * pos
 	#Define a query that checks collision layer 2
