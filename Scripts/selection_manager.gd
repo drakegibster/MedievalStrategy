@@ -7,33 +7,33 @@ var drag_end = Vector2.ZERO
 var selected_units: Array = [] #List of selected units
 
 func _unhandled_input(event: InputEvent):
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				# Start Drag
 				dragging = true
-				drag_start = event.position
-				drag_end =  event.position
+				drag_start = get_global_mouse_position()
+				drag_end = get_global_mouse_position()
 			elif dragging:
 				# End Drag
 				dragging = false
-				drag_end = event.position
+				drag_end = get_global_mouse_position()
 				queue_redraw() # Hide the box
 				select_units_in_box() # Run the physics check
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			handle_right_click()
 	if event is InputEventMouseMotion and dragging:
 		# Update Drag
-		drag_end = event.position # Updates the drag_end part variable, NOT the drag_start var
+		drag_end = get_global_mouse_position() # Updates the drag_end part variable, NOT the drag_start var
 		queue_redraw() # Updates the visual box
 
 func _draw():
 	if dragging:
 		draw_rect(Rect2(drag_start, drag_end - drag_start), Color(0, 1, 0, 0.2), true)
-		draw_rect(Rect2(drag_start, drag_end -drag_start), Color(0, 1, 0, 0.5), false, 2.0)
+		draw_rect(Rect2(drag_start, drag_end - drag_start), Color(0, 1, 0, 0.5), false, 2.0)
 
 func handle_left_click():
-	var mouse_pos = get_viewport().get_mouse_position()
+	var mouse_pos = get_global_mouse_position()
 	# Gets a unit using the get unit function which takes the mouse position as an input
 	var unit = get_unit_at_mouse(mouse_pos)
 	if unit != null:
