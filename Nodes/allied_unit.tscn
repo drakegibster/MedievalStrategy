@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://vy44hgfnoavf"]
+[gd_scene load_steps=6 format=3 uid="uid://vy44hgfnoavf"]
 
 [ext_resource type="Texture2D" uid="uid://7x7fe4v1tn4y" path="res://Assets/CustomSprites/AlliedSprite.png" id="1_c818w"]
 [ext_resource type="Script" uid="uid://ywlgp7m2wse8" path="res://Scripts/allied_unit.gd" id="1_g8edn"]
 [ext_resource type="Texture2D" uid="uid://boeporarlrmt7" path="res://Assets/CustomSprites/Highlight.png" id="3_g8edn"]
+[ext_resource type="Script" uid="uid://b24vincdfda0r" path="res://health_component.gd" id="4_h8glb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gn2ry"]
 size = Vector2(14, 14)
@@ -22,5 +23,9 @@ shape = SubResource("RectangleShape2D_gn2ry")
 
 [node name="SelectionHighlight" type="Sprite2D" parent="."]
 texture = ExtResource("3_g8edn")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_h8glb")
+metadata/_custom_type_script = "uid://b24vincdfda0r"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
